@@ -1,0 +1,26 @@
+{
+    "tiles": [
+        {
+            "type": "sky",
+            "position": {
+                "x": 0,
+                "y": 0
+            },
+            "size": {
+                "width": 80,
+                "height": 40
+            }
+        },
+        {
+            "type": "ground",
+            "position": {
+                "x": 0,
+                "y": 38
+            },
+            "size": {
+                "width": 80,
+                "height": 2
+            }
+        }
+    ]
+}
