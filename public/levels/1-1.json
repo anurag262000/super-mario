@@ -1,26 +1,26 @@
 {
-    "tiles": [
+    "backgrounds": [
         {
-            "type": "sky",
-            "position": {
-                "x": 0,
-                "y": 0
-            },
-            "size": {
-                "width": 80,
-                "height": 40
-            }
+            "tile": "sky",
+            "ranges": [
+                [
+                    0,
+                    40,
+                    0,
+                    40
+                ]
+            ]
         },
         {
-            "type": "ground",
-            "position": {
-                "x": 0,
-                "y": 38
-            },
-            "size": {
-                "width": 80,
-                "height": 2
-            }
+            "tile": "ground",
+            "ranges": [
+                [
+                    0,
+                    40,
+                    38,
+                    40
+                ]
+            ]
         }
     ]
 }
