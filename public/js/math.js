@@ -1,6 +1,3 @@
-
-
-
 export class Matrix {
     constructor() {
         this.grid = [];
@@ -10,9 +7,8 @@ export class Matrix {
         this.grid.forEach((column, x) => {
             column.forEach((value, y) => {
                 callback(value, x, y);
-
             });
-        })
+        });
     }
 
     get(x, y) {
@@ -27,12 +23,10 @@ export class Matrix {
         if (!this.grid[x]) {
             this.grid[x] = [];
         }
+
         this.grid[x][y] = value;
     }
 }
-
-window.Matrix = Matrix;
-
 
 export class Vec2 {
     constructor(x, y) {

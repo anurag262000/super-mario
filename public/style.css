@@ -1,18 +1,3 @@
-.title {
-    font-family: "Press Start 2P", system-ui;
-    font-weight: 700;
-    font-style: italic;
-
-    color: transparent;
-    background-image: linear-gradient(to right, #ff0000, #ff6a00, #f0ff00, #0057ff);
-
-    -webkit-background-clip: text;
-    background-clip: text;
-    text-shadow: 3px 3px 0 #00000034;
-    font-size: 2rem;
-    text-align: center;
-}
-
 .container {
     display: flex;
     flex-direction: column;
