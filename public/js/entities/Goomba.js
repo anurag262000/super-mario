@@ -1,10 +1,10 @@
-import Entity, {Sides} from '../Entity.js';
+import Entity, { Sides } from '../Entity.js';
 import PendulumWalk from '../traits/PendulumWalk.js';
-import {loadSpriteSheet} from '../loaders.js';
+import { loadSpriteSheet } from '../loaders.js';
 
 export function loadGoomba() {
     return loadSpriteSheet('goomba')
-    .then(createGoombaFactory);
+        .then(createGoombaFactory);
 }
 
 function createGoombaFactory(sprite) {
