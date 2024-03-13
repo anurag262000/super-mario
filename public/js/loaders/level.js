@@ -1,7 +1,7 @@
-import { Matrix } from '../math.js';
+import {Matrix} from '../math.js';
 import Level from '../Level.js';
-import { createBackgroundLayer, createSpriteLayer } from '../layers.js';
-import { loadJSON, loadSpriteSheet } from '../loaders.js';
+import {createBackgroundLayer, createSpriteLayer} from '../layers.js';
+import {loadJSON, loadSpriteSheet} from '../loaders.js';
 
 function setupCollision(levelSpec, level) {
     const mergedTiles = levelSpec.layers.reduce((mergedTiles, layerSpec) => {
@@ -20,7 +20,7 @@ function setupBackgrounds(levelSpec, level, backgroundSprites) {
 }
 
 function setupEntities(levelSpec, level, entityFactory) {
-    levelSpec.entities.forEach(({ name, pos: [x, y] }) => {
+    levelSpec.entities.forEach(({name, pos: [x, y]}) => {
         const createEntity = entityFactory[name];
         const entity = createEntity();
         entity.pos.set(x, y);
@@ -34,27 +34,27 @@ function setupEntities(levelSpec, level, entityFactory) {
 export function createLevelLoader(entityFactory) {
     return function loadLevel(name) {
         return loadJSON(`/levels/${name}.json`)
-            .then(levelSpec => Promise.all([
-                levelSpec,
-                loadSpriteSheet(levelSpec.spriteSheet),
-            ]))
-            .then(([levelSpec, backgroundSprites]) => {
-                const level = new Level();
+        .then(levelSpec => Promise.all([
+            levelSpec,
+            loadSpriteSheet(levelSpec.spriteSheet),
+        ]))
+        .then(([levelSpec, backgroundSprites]) => {
+            const level = new Level();
 
-                setupCollision(levelSpec, level);
-                setupBackgrounds(levelSpec, level, backgroundSprites);
-                setupEntities(levelSpec, level, entityFactory);
+            setupCollision(levelSpec, level);
+            setupBackgrounds(levelSpec, level, backgroundSprites);
+            setupEntities(levelSpec, level, entityFactory);
 
-                return level;
-            });
+            return level;
+        });
     }
 }
 
 function createCollisionGrid(tiles, patterns) {
     const grid = new Matrix();
 
-    for (const { tile, x, y } of expandTiles(tiles, patterns)) {
-        grid.set(x, y, { type: tile.type });
+    for (const {tile, x, y} of expandTiles(tiles, patterns)) {
+        grid.set(x, y, {type: tile.type});
     }
 
     return grid;
@@ -63,8 +63,8 @@ function createCollisionGrid(tiles, patterns) {
 function createBackgroundGrid(tiles, patterns) {
     const grid = new Matrix();
 
-    for (const { tile, x, y } of expandTiles(tiles, patterns)) {
-        grid.set(x, y, { name: tile.name });
+    for (const {tile, x, y} of expandTiles(tiles, patterns)) {
+        grid.set(x, y, {name: tile.name});
     }
 
     return grid;
@@ -76,7 +76,7 @@ function* expandSpan(xStart, xLen, yStart, yLen) {
     const yEnd = yStart + yLen;
     for (let x = xStart; x < xEnd; ++x) {
         for (let y = yStart; y < yEnd; ++y) {
-            yield { x, y };
+            yield {x, y};
         }
     }
 }
@@ -105,7 +105,7 @@ function* expandRanges(ranges) {
 function* expandTiles(tiles, patterns) {
     function* walkTiles(tiles, offsetX, offsetY) {
         for (const tile of tiles) {
-            for (const { x, y } of expandRanges(tile.ranges)) {
+            for (const {x, y} of expandRanges(tile.ranges)) {
                 const derivedX = x + offsetX;
                 const derivedY = y + offsetY;
 

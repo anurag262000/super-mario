@@ -1,6 +1,12 @@
-export default class Keyboard {
+const PRESSED = 1;
+const RELEASED = 0;
+
+export default class KeyboardState {
     constructor() {
+        // Holds the current state of a given key
         this.keyStates = new Map();
+
+        // Holds the callback functions for a key code
         this.keyMap = new Map();
     }
 
@@ -9,21 +15,23 @@ export default class Keyboard {
     }
 
     handleEvent(event) {
-        const { code, type } = event;
+        const { code } = event;
 
         if (!this.keyMap.has(code)) {
+            // Did not have key mapped.
             return;
         }
 
         event.preventDefault();
 
-        const keyState = type === 'keydown';
+        const keyState = event.type === 'keydown' ? PRESSED : RELEASED;
 
         if (this.keyStates.get(code) === keyState) {
             return;
         }
 
         this.keyStates.set(code, keyState);
+
         this.keyMap.get(code)(keyState);
     }
 
@@ -33,14 +41,5 @@ export default class Keyboard {
                 this.handleEvent(event);
             });
         });
-
-        // Additional logic to handle when the window loses focus
-        window.addEventListener('blur', () => {
-            this.keyStates.clear();
-        });
-    }
-
-    anyKeyPressed() {
-        return Array.from(this.keyStates.values()).some(state => state);
     }
 }
